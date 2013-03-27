@@ -1,8 +1,10 @@
 (function () {
     console.log("blah")
    
-    var takePicture = document.querySelector("#take-picture");
+    var takePicture = document.querySelector("#browse");
     var showPicture = document.querySelector("#show-picture");
+    var W3CDOM = (document.createElement && document.getElementsByTagName);
+
     console.log(takePicture);
     
     takePicture.onchange = function (event) {
@@ -26,17 +28,34 @@
         
     };
     
-   window.ondevicemotion = function(event) {
-        console.log("blah");
-        var xVal = event.accelerationIncludingGravity.x;
-        var yVal = event.accelerationIncludingGravity.y;
-        var msg = document.querySelector("#msgs");
-        if (msg) {
-            msg.innerHTML = "X: " + xVal + " Y: " + yVal;
-        }
-
-    }
+ 
+    
+   // window.ondevicemotion = function(event) {
+//         console.log("blah");
+//         var xVal = event.accelerationIncludingGravity.x;
+//         var yVal = event.accelerationIncludingGravity.y;
+//         var msg = document.querySelector("#msgs");
+//         if (msg) {
+//             msg.innerHTML = "X: " + xVal + " Y: " + yVal;
+//         }
+// 
+//     }
 
     
     
 })();
+
+
+function HandleBrowseClick()
+{
+        console.log("what's up");
+         var fileinput = document.getElementById("browse");
+        fileinput.click();
+}
+
+function Handlechange()
+{
+        var fileinput = document.getElementById("browse");
+        var textinput = document.getElementById("filename");
+        textinput.value = fileinput.value;
+}
