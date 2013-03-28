@@ -3,33 +3,41 @@ var store;
 (function () {
     console.log("blah")
     
-    var fb = new FingerBlast ('body');
+    //var fb = new FingerBlast ('');
     store = new Persist.Store('labsnap');
-    
    
-    var takePicture = document.querySelector("#browse");
-    
-    console.log(takePicture);
-    
-    if (takePicture != undefined && takePicture != null) {
-    takePicture.onchange = function (event) {
-        console.log("got change event");
-        // Get a reference to the taken picture or chosen file
-        var files = event.target.files,
-            file;
-            if (files && files.length > 0) {
-                file = files[0];
-                    // Get window.URL object
-                    var URL = window.URL || window.webkitURL;
- 
-                    // Create ObjectURL
-                    var imgURL = URL.createObjectURL(file);
-                    store.set('image', imgURL);
- 
-            }
-        
-    };}
-    
+   window.addEventListener('push', function() {
+   
+            console.log("bob"); 
+            
+            HandleBrowseClick();
+   
+   });
+   
+    // var takePicture = document.querySelector("#browse");
+//     
+//     console.log(takePicture);
+//     
+//     if (takePicture != undefined && takePicture != null) {
+//     takePicture.onchange = function (event) {
+//         console.log("got change event");
+//         // Get a reference to the taken picture or chosen file
+//         var files = event.target.files,
+//             file;
+//             if (files && files.length > 0) {
+//                 file = files[0];
+//                     // Get window.URL object
+//                     var URL = window.URL || window.webkitURL;
+//  
+//                     // Create ObjectURL
+//                     var imgURL = URL.createObjectURL(file);
+//                    var showPicture = document.querySelector("#show-picture");
+// 		            showPicture.src = imgURL;
+//  
+//             }
+//         
+//     };}
+//     
  
     
    // window.ondevicemotion = function(event) {
@@ -51,9 +59,9 @@ var store;
 function HandleBrowseClick()
 {
         console.log("what's up");
-         var fileinput = document.getElementById("browse");
+        var fileinput = document.getElementById("browse");
+        console.log(fileinput);
         fileinput.click();
-        
 }
 
 function Handlechange()
