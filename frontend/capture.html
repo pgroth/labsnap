@@ -54,16 +54,19 @@
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
   <div class="content">
   
-  <div class="square"><img src="./icons/noun_project_3419.svg" onclick="HandleBrowseClick();"></div>
-  <div class="square"><img src="./icons/noun_project_4091.svg"></div>
+  <div class="square"><a href="./photo.html" data-transition="slide-in"><img src="./icons/noun_project_3419.svg"></a></div>
+  <div class="square"><a href="./text.html" data-transition="slide-in"><img src="./icons/noun_project_4091.svg"></a></div>
   <div class="square"><img src="./icons/noun_project_2313.svg"></div> 
-  <div class="square"><img src="./icons/noun_project_5268.svg"></div>
- 
-   <input type="file" id="browse" name="fileupload" style="display: none" onChange="Handlechange();" accept="image/*" capture="camera"/>
-   <!-- <input type="text" id="filename" readonly="true"/> -->
+  <div class="square"><a href="./csv.html" data-transition="slide-in"><img src="./icons/noun_project_5268.svg"></a></div>
+  	
+
+   
+<!--- <input type="text" id="filename" readonly="true"/> -->
 
 </div>
 
   </body>
+  <script type='text/javascript' src='persist.js'></script>
+  <script src="fingerblast.js"></script>
   <script src="base.js"></script>
 </html>

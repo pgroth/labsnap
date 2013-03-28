@@ -21,10 +21,10 @@
 	href="../ratchet/touch-icons/apple-touch-icon-57x57.png">
 
 <!-- Include the compiled Ratchet CSS -->
-<link rel="stylesheet" href="../ratchet/ratchet.css">
+<link rel="stylesheet" href="./ratchet/ratchet.css">
 
 <!-- Include the compiled Ratchet JS -->
-<script src="../ratchet/ratchet.js"></script>
+<script src="./ratchet/ratchet.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!-- Intro paragraph styles. Delete once you start using this page -->
@@ -33,22 +33,28 @@
 	line-height: 1.5;
 	color: #555;
 }
+
+
+        .square {
+            margin-top:20px;
+            margin-left:35px;
+    
+            float: left;
+            width:120px;
+            height:100px;
+            display:block;
+            overflow:hidden;
+        }
+            
 </style>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-		var showPicture = document.querySelector("#show-picture");
-		showPicture.src = getImageUrl();
-	});
-</script>
 
 </head>
 <body>
 
 	<!-- Make sure all your bars are the first things in your <body> -->
 	<header class="bar-title">
-	    <a class="button-prev" href="../capture.html">
+	    <a class="button-prev" href="./capture.html">
             Home
         </a>
 		<h1 class="title">Picture</h1>
@@ -56,11 +62,19 @@
 
 	<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 	<div class="content">
-		<img style="width: auto; height: auto;" id="show-picture">
+	
+<div><a class="button-main">Submit</a> </div>
+<br>
+<input type="file" id="browse" name="fileupload" style="display: true" accept="image/*" capture="camera"/>
+<img style="width: 100%;" id="show-picture">
+   
 
+	
+	<div>
+	
+	
 </body>
 <script type='text/javascript' src='persist.js'></script>
-<script src="main.js"></script>
 
 </html>
 

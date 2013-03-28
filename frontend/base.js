@@ -3,41 +3,41 @@ var store;
 (function () {
     console.log("blah")
     
-    //var fb = new FingerBlast ('');
+    //var fb = new FingerBlast ('body');
     store = new Persist.Store('labsnap');
    
    window.addEventListener('push', function() {
    
             console.log("bob"); 
             
-            HandleBrowseClick();
-   
+            console.log("what's up");
+            
    });
    
-    // var takePicture = document.querySelector("#browse");
-//     
-//     console.log(takePicture);
-//     
-//     if (takePicture != undefined && takePicture != null) {
-//     takePicture.onchange = function (event) {
-//         console.log("got change event");
-//         // Get a reference to the taken picture or chosen file
-//         var files = event.target.files,
-//             file;
-//             if (files && files.length > 0) {
-//                 file = files[0];
-//                     // Get window.URL object
-//                     var URL = window.URL || window.webkitURL;
-//  
-//                     // Create ObjectURL
-//                     var imgURL = URL.createObjectURL(file);
-//                    var showPicture = document.querySelector("#show-picture");
-// 		            showPicture.src = imgURL;
-//  
-//             }
-//         
-//     };}
-//     
+    var takePicture = document.querySelector("#browse");
+    
+    console.log(takePicture);
+    
+    if (takePicture != undefined && takePicture != null) {
+        takePicture.onchange = function (event) {
+        console.log("got change event");
+        // Get a reference to the taken picture or chosen file
+        var files = event.target.files,
+            file;
+            if (files && files.length > 0) {
+                file = files[0];
+                    // Get window.URL object
+                    var URL = window.URL || window.webkitURL;
+ 
+                    // Create ObjectURL
+                    var imgURL = URL.createObjectURL(file);
+                    var showPicture = document.querySelector("#show-picture");
+		            showPicture.src = imgURL;
+ 
+            }
+        
+    };}
+    
  
     
    // window.ondevicemotion = function(event) {
