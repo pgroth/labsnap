@@ -24,9 +24,7 @@
 <link rel="stylesheet" href="ratchet/ratchet.css">
 
 <!-- Include the compiled Ratchet JS -->
-<script src="ratchet/ratchet.js"></script>
-<script src="fingerblast.js"></script>
-<script src="persist.js"></script>
+
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://raw.github.com/jaz303/jquery-grab-bag/master/javascripts/jquery.autogrow-textarea.js"></script>
@@ -36,6 +34,19 @@
 	line-height: 1.5;
 	color: #555;
 }
+
+
+        .square {
+            margin-top:20px;
+            margin-left:35px;
+    
+            float: left;
+            width:120px;
+            height:100px;
+            display:block;
+            overflow:hidden;
+        }
+        
 </style>
 <script type="text/javascript">
 
@@ -48,23 +59,28 @@ $(function() {
 
 	<!-- Make sure all your bars are the first things in your <body> -->
 	<header class="bar-title">
+	<a class="button-prev" href="./capture.html">
+            Home
+        </a>
 		<h1 class="title">CSV</h1>
 	</header>
 
 	<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 	<div class="content">
-	<div align="center" style="margin-top:6px;">
-	<a class="button" onmousedown="addRowToCsv('notes');" data-ignore="push">Add Row</a>
-	<a class="button" onmousedown="addColToCsv('notes');" data-ignore="push">Add Column</a>
-	</div>
-  <textarea style="margin-top:6px;"rows=7 id="notes">col1, col2, col3
-val1, val2, val3</textarea>
-<a class="button button-block">Submit</a>
+	
+	
+     <input type="text" id="data" placeholder="Data" onkeydown="if (event.keyCode == 13) document.getElementById('entryBtn').click()"> 
+     <a class="button" id="entryBtn" onclick="addColToCsv();" data-ignore="push">Add Entry</a>
+     <a class="button" onclick="addRowToCsv();" data-ignore="push">Add Row</a>
+    <textarea rows=7 id="notes"></textarea>
+  <a class="button button-block">Submit</a>
 
 
 	</div>
 
 </body>
-<script src="base.js"></script>
+ <script type='text/javascript' src='persist.js'></script>
+  <script src="fingerblast.js"></script>
+  <script src="base.js"></script>
 </html>
 
