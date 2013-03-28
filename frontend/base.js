@@ -86,3 +86,55 @@ function getMetaData() {
 		"time" : getTime()
 	};
 }
+
+function addRowToCsv(elementId) {
+	console.log("adding row");
+	var element = $('#' + elementId);
+	if (element) {
+		var csv = element.val();
+		//count number of comma's on first row
+		var numCommas = getNumCommasOnFirstRow(csv);
+		var newline = " ";
+		for (i = 0; i < numCommas; i++) {
+			newline += ", ";
+		}
+		csv += "\n" + newline;
+		element.val(csv);
+	} else {
+		console.log("no element to add row to");
+	}
+}
+
+function getNumCommasOnFirstRow(csv) {
+	var num = 0;
+	var lines = csv.match(/^.*((\r\n|\n|\r)|$)/gm);
+	//go to first line with string length
+	for(i = 0; i < lines.length; i++) {
+		var trimmedline = trim(lines[i]);
+		if (trimmedline.length > 0) {
+			num = trimmedline.match(/,/g).length;
+			break;
+		}
+		
+	}
+	return num;
+}
+
+function addColToCsv(elementId) {
+	var element = $('#' + elementId);
+	var element = $('#' + elementId);
+	if (element) {
+		var csv = element.val();
+		var lines = csv.match(/^.*((\r\n|\n|\r)|$)/gm);
+		var newSetOfLines = [];
+		for(i = 0; i < lines.length; i++) {
+			newSetOfLines[i] = trim(lines[i]) + ", ";
+		}
+		element.val(newSetOfLines.join("\n"));
+	} else {
+		console.log("no element to add col to");
+	}
+}
+function trim(string) {
+	return string.replace(/^\s+|\s+$/g, '');
+}
