@@ -97,20 +97,9 @@ function getMetaData() {
 
 function addRowToCsv(elementId) {
 	console.log("adding row");
-	var element = $('#' + elementId);
-	if (element) {
-		var csv = element.val();
-		//count number of comma's on first row
-		var numCommas = getNumCommasOnFirstRow(csv);
-		var newline = " ";
-		for (i = 0; i < numCommas; i++) {
-			newline += ", ";
-		}
-		csv += "\n" + newline;
-		element.val(csv);
-	} else {
-		console.log("no element to add row to");
-	}
+	 var note = document.getElementById("notes");
+	 
+	 note.value = note.value + '\n'
 }
 
 function getNumCommasOnFirstRow(csv) {
@@ -128,21 +117,15 @@ function getNumCommasOnFirstRow(csv) {
 	return num;
 }
 
-function addColToCsv(elementId) {
-	var element = $('#' + elementId);
-	var element = $('#' + elementId);
-	if (element) {
-		var csv = element.val();
-		var lines = csv.match(/^.*((\r\n|\n|\r)|$)/gm);
-		var newSetOfLines = [];
-		for(i = 0; i < lines.length; i++) {
-			newSetOfLines[i] = trim(lines[i]) + ", ";
-		}
-		element.val(newSetOfLines.join("\n"));
-	} else {
-		console.log("no element to add col to");
-	}
+function addColToCsv() {
+	 var note = document.getElementById("notes");
+	 var data = document.getElementById("data");
+	 console.log(note.value)
+	 note.value = note.value + data.value + ' , ';
+	 data.value = "";
 }
+
+
 function trim(string) {
 	return string.replace(/^\s+|\s+$/g, '');
 }
