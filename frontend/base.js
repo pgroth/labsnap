@@ -1,12 +1,17 @@
+var store;
+
 (function () {
     console.log("blah")
+    
+    var fb = new FingerBlast ('body');
+    store = new Persist.Store('labsnap');
+    
    
     var takePicture = document.querySelector("#browse");
-    var showPicture = document.querySelector("#show-picture");
-    var W3CDOM = (document.createElement && document.getElementsByTagName);
-
+    
     console.log(takePicture);
     
+    if (takePicture != undefined && takePicture != null) {
     takePicture.onchange = function (event) {
         console.log("got change event");
         // Get a reference to the taken picture or chosen file
@@ -19,14 +24,11 @@
  
                     // Create ObjectURL
                     var imgURL = URL.createObjectURL(file);
+                    store.set('image', imgURL);
  
-                    // Set img src to ObjectURL
-                    showPicture.src = imgURL;
- 
-                    // Revoke ObjectURL
             }
         
-    };
+    };}
     
  
     
@@ -51,6 +53,7 @@ function HandleBrowseClick()
         console.log("what's up");
          var fileinput = document.getElementById("browse");
         fileinput.click();
+        
 }
 
 function Handlechange()
@@ -58,4 +61,28 @@ function Handlechange()
         var fileinput = document.getElementById("browse");
         var textinput = document.getElementById("filename");
         textinput.value = fileinput.value;
+}
+
+function getImageUrl() {
+    imgurl = store.get('image');
+	return imgurl;
+}
+
+function getLocation() {
+	if (navigator.geolocation) {
+		position = navigator.geolocation.getCurrentPosition(showPosition);
+		console.log(position);
+		return position.coords.latitude + ":" + position.coords.longitude;
+	}
+}
+function getTime() {
+	var d = new Date();
+	return d.getTime();
+}
+
+function getMetaData() {
+	return {
+		"location" : getLocation(),
+		"time" : getTime()
+	};
 }
