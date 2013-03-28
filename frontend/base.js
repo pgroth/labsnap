@@ -135,9 +135,10 @@ function submitTextCapture() {
 	$.ajax({
   type: "POST",
   url: serverUrl,
+  
   data: {
-  	"title": "requestTitle",
-	"description": "descropppp",
+  	"title": "LabSnap Note (" + Date.toString() + ")",
+	"description": "LabSnap Note of " + Date.toString() + ". Coordinates: " + getLocation(),
 	"file": stringText
   }
 });
