@@ -22,9 +22,13 @@
 
 <!-- Include the compiled Ratchet CSS -->
 <link rel="stylesheet" href="ratchet/ratchet.css">
-
+<script src="persist.js"></script>
 <!-- Include the compiled Ratchet JS -->
 <script src="ratchet/ratchet.js"></script>
+<script src="base.js"></script>
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="https://raw.github.com/jaz303/jquery-grab-bag/master/javascripts/jquery.autogrow-textarea.js"></script>
@@ -69,7 +73,7 @@ $(function() {
 	<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 	<div class="content">
   <textarea style="margin-top:6px;"rows=7 id="notes"></textarea>
-<a class="button button-block">Submit</a>
+<a class="button button-block" onclick="submitTextCapture();">Submit</a>
 
 
 	</div>

@@ -1,5 +1,5 @@
 var store;
-
+var serverUrl = "http://localhost:3637/";
 (function () {
     console.log("blah")
     
@@ -145,4 +145,17 @@ function addColToCsv(elementId) {
 }
 function trim(string) {
 	return string.replace(/^\s+|\s+$/g, '');
+}
+function submitTextCapture() {
+	var stringText = $("#notes").val();
+	console.log(stringText);
+	$.ajax({
+  type: "POST",
+  url: serverUrl,
+  data: {
+  	"title": "requestTitle",
+	"description": "descropppp",
+	"file": stringText
+  }
+});
 }

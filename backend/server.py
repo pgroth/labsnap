@@ -1,26 +1,31 @@
 #!/usr/bin/python
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 from create_article import upload_file
+from SimpleHTTPServer import SimpleHTTPRequestHandler
 import cgi
 PORT_NUMBER = 3637
 
 #This class will handles any incoming request from
 #the browser 
-class myHandler(BaseHTTPRequestHandler):
+class myHandler(SimpleHTTPRequestHandler):
 	
 	#Handler for the GET requests
-	def do_GET(self):
-		self.send_response(200)
-		self.send_header('Content-type','text/html')
-		self.end_headers()
-		# Send the html message
-		self.wfile.write("Hello World !")
-		return
+#	def do_GET(self):
+#		self.send_response(200)
+#		self.send_header('Content-type','text/html')
+#		self.end_headers()
+#		# Send the html message
+#		self.wfile.write("Hello World !")
+#		return
+
+	
 		
 	def do_POST(self):
 #		title = "titleee"
 #		description = "descriptp"
-		file = open('test.txt', 'rb')
+		self.send_header('Access-Control-Allow-Origin', '*')
+		self.end_headers()
+#		file = open('test.txt', 'rb')
 		ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
 		if ctype == 'multipart/form-data':
 			postvars = cgi.parse_multipart(self.rfile, pdict)
@@ -30,16 +35,19 @@ class myHandler(BaseHTTPRequestHandler):
 		else:
 			postvars = {}
 		print postvars
-		upload_file(postvars['title'][0], postvars['description'][0], file)
+		upload_file(postvars['title'][0], postvars['description'][0], postvars['file'][0])
 		
 		
-		self.send_response(200)
-		self.send_header('Content-type','text/html')
-		self.end_headers()
+#		self.send_response(200)
+#		self.send_header('Content-type','text/html')
+#		self.end_headers()
 		
 		# Send the html message
 		self.wfile.write("succes")
 		return
+	def do_OPTIONS(self):           
+		self.send_response(200, "ok")
+		self.send_header('Access-Control-Allow-Origin', '*')
 
 try:
 	#Create a web server and define the handler to manage the
