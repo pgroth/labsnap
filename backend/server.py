@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 from create_article import upload_file
-
+import cgi
 PORT_NUMBER = 3637
 
 #This class will handles any incoming request from
@@ -18,11 +18,19 @@ class myHandler(BaseHTTPRequestHandler):
 		return
 		
 	def do_POST(self):
-		title = "titleee"
-		description = "descriptp"
+#		title = "titleee"
+#		description = "descriptp"
 		file = open('test.txt', 'rb')
-		
-		upload_file(title, description, file)
+		ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+		if ctype == 'multipart/form-data':
+			postvars = cgi.parse_multipart(self.rfile, pdict)
+		elif ctype == 'application/x-www-form-urlencoded':
+			length = int(self.headers.getheader('content-length'))
+			postvars = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
+		else:
+			postvars = {}
+		print postvars
+		upload_file(postvars['title'][0], postvars['description'][0], file)
 		
 		
 		self.send_response(200)
