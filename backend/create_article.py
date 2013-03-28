@@ -1,22 +1,46 @@
 #!/usr/bin/python
 import requests
-from oauth_hook import OAuthHook
+from requests_oauthlib import OAuth1
 import json
 
+def upload_file(title, description, file):
 
-OAuthHook.consumer_key = 'Jx2A6oyHRXeNgkR719eQSg'
-OAuthHook.consumer_secret = 'g5lqRg9MD3Cn4ozSlSv8Xw'
-token_key = 'A1qC4Zo7GiK2vhe1rrRQ1ARbMd39BWwbGpvxyoRAi6cwA1qC4Zo7GiK2vhe1rrRQ1A'
-token_secret = 'bKIpbbIRQNYoyulyXB5jwQ'
-oauth_hook = OAuthHook(token_key, token_secret, header_auth=True)
+	client_key = 'K9qG70PgROIg8CpZGJlGRg'
+	client_secret = '0JdZcz5pz0HwyWbeiwsviA'
+	oauth_token = 'KiK1mXCCUcEBS8Y0enYwaANIvQZZKThYYRV27IYc8kCwKiK1mXCCUcEXS8Y0enYwaA'
+	oauth_token_secret = 'LH6qL2FoQOeLfyEjnnnRGQ'
+	oauth = OAuth1(client_key, client_secret, oauth_token, oauth_token_secret)
 
-client = requests.session(hooks={'pre_request': oauth_hook})
+	# Create article on figshare
+	body = {'title':title, 'description':description,'defined_type':'dataset'}
+	headers = {'content-type':'application/json'}
 
-body = {'title':'Test dataset', 'description':'Test description','defined_type':'dataset'}
-headers = {'content-type':'application/json'}
+	response = requests.post('http://api.figshare.com/v1/my_data/articles', data=json.dumps(body), headers=headers, auth=oauth)
+#	print response
+	postResults = json.loads(response.content)
 
-response = client.post('http://api.figshare.com/v1/my_data/articles',
-                        data=json.dumps(body), headers=headers)
+	articleId = postResults['article_id']
 
-results = json.loads(response.content)
-print results
+	files = {'filedata': file}
+
+	response_file = requests.put('http://api.figshare.com/v1/my_data/articles/' + str(articleId) + '/files', files=files, auth=oauth)
+	print response
+	results_file = json.loads(response_file.content)
+	print results_file
+
+#print "Checked urls: ", checked_urls
+#for u in article_urls :
+#    if u['uri'] in checked_urls :
+#        body = {'link': u['web']}
+#        headers = {'content-type':'application/json'}
+#
+#        response = requests.put('http://api.figshare.com/v1/my_data/articles/{}/links'.format(article_id),
+#                            data=json.dumps(body), headers=headers, auth=oauth)
+#        results = json.loads(response.content)
+#        print "Added {} with the following results:\n".format(u['uri']), results
+
+#body = {'tag_name': 'Enriched with LinkItUp'}
+#headers = {'content-type':'application/json'}
+
+#response = requests.put('http://api.figshare.com/v1/my_data/articles/{}/tags'.format(article_id),
+#                            data=json.dumps(body), headers=headers, auth=oauth)
